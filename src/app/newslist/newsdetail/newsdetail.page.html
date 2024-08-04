@@ -1,0 +1,52 @@
+<ion-header>
+    <ion-toolbar color="dark">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/news/tabs/newslist"></ion-back-button>
+        </ion-buttons>
+        <ion-title class="ion-no-padding">ANALYSIS Details</ion-title>
+        <ion-buttons slot="end">
+            <ion-button slot="end" (click)="onDeletenews()">
+                <ion-icon name="trash" slot="icon-only"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="ion-text-center" *ngIf="isloading">
+        <ion-spinner color="primary"></ion-spinner>
+    </div>
+    <ion-grid class="ion-no-padding" *ngIf="!isloading">
+        <ion-row style="">
+            <ion-col class="ion-no-padding">
+                <ion-img [src]="loadnews?.imageurl"></ion-img>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col class="ion-padding ion-no-margin">
+                <p class="load-type"> {{loadnews?.newstype}}</p>
+                <h2 class="load-title">{{loadnews?.title}}</h2>
+                <ion-item lines="none" class="ion-no-padding ion-no-margin">
+                    <h6 style="font-size: small;">MNC Newsroom</h6> <span style="padding: 4px">|</span>
+                    <h6 style="font-size: small;">{{loadnews?.date | date }}</h6>
+                    <ion-buttons slot="end" class="ion-no-padding ion-no-margin" (click)="onclickbookmark(loadnews)">
+                        <ion-icon [name]=" loadnews.bookmark  ? 'bookmark' :'bookmark-outline'" slot="end"></ion-icon>
+                    </ion-buttons>
+                    <ion-buttons slot="end" class="ion-no-padding ion-no-margin">
+                        <ion-icon name="share-social-outline" slot="end"></ion-icon>
+                    </ion-buttons>
+                </ion-item>
+                <ion-buttons>
+                    <ion-button [routerLink]="['qand-a']">
+                        Q&A
+                    </ion-button>
+                </ion-buttons>
+            </ion-col>
+        </ion-row>
+        <ion-row class="ion-no-padding">
+            <ion-col class="ion-padding">
+                <p class="load-description" style="margin: 0%;">{{loadnews?.description}}</p>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

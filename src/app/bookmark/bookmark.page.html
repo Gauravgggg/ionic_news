@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-toolbar color="dark">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/news/tabs/newslist">
+            </ion-back-button>
+        </ion-buttons>
+        <ion-title class="ion-no-padding">Bookmark</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid class="ion-no-padding">
+
+        <ion-col sizeMd="4" sizeLg="4" sizeSm="12" class="ion-no-padding">
+            <ion-item lines="none" *ngIf=" bookmark.length===0 ">
+                <p class="ion-text-center" style="padding-left: 70px; font-size: 20px;">No Bookmark Yet !!</p>
+            </ion-item>
+
+            <ion-item-sliding *ngFor="let bookmarks of bookmark " #slideEl>
+                <ion-item lines="full ">
+                    <ion-thumbnail>
+                        <ion-img [src]="bookmarks.imageurl "></ion-img>
+                    </ion-thumbnail>
+                    <ion-content class="loaded-content ">
+                        <ion-label class="loaded-type ">{{bookmarks.newstype}}</ion-label>
+                        <ion-label class="load-title ">{{bookmarks.title}}</ion-label>
+                    </ion-content>
+                </ion-item>
+
+                <ion-item-options>
+                    <ion-item-option color="danger " (click)="onDelete(bookmarks.id,slideEl) ">
+                        <ion-icon name="trash-outline " slot="icon-only "></ion-icon>
+                    </ion-item-option>
+                </ion-item-options>
+            </ion-item-sliding>
+
+        </ion-col>
+    </ion-grid>
+</ion-content>

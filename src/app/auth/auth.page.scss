@@ -1,0 +1,84 @@
+ion-button {
+    --border-style: solid;
+    --border-color: #000;
+}
+
+.radio-group ion-item {
+    display: flex;
+    align-items: center;
+}
+
+.radio-group ion-label {
+    margin-left: 10px;
+    /* Adjust the margin as needed */
+}
+
+.singup {
+    color: blue;
+    padding-left: 5px;
+    font-size: 13px;
+}
+
+span {
+    color: red;
+}
+
+.button-text {
+    font-size: 14px;
+    text-transform: capitalize;
+}
+
+ion-content {
+    --background: url('../../assets/mountains-8480519_1280.jpg');
+    background: no-repeat;
+}
+
+// .background-image {
+//     background-color: #964e4e;
+//
+//     background-size: cover;
+// }
+ion-input {
+    // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    // box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    // background-color: #D3D3D3;
+    /* Adjust the values to achieve the desired shadow effect */
+    --border-color: #000;
+}
+
+.input-fill-outline.sc-ion-input-md-h {
+    --border-color: var(--ion-color-step-300, #151414);
+    --border-radius: 4px;
+    --padding-start: 16px;
+    --padding-end: 16px;
+    min-height: 56px;
+}
+
+.input-fill-outline.sc-ion-input-ios-h {
+    --border-color: var(--ion-color-step-300, #151414);
+    --border-radius: 4px;
+    --padding-start: 16px;
+    --padding-end: 16px;
+    min-height: 56px;
+}
+
+ion-input:focus {
+    border: #000;
+}
+
+.custom-select-option {}
+
+.itempadd {
+    margin-top: 16px;
+    padding: 5px;
+    // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    // background: transparent;
+}
+
+ion-item:not(.item-label):not(.item-has-modern-input) .sc-ion-input-md-h {
+    --padding-start: 5px;
+}
+
+ion-select {
+    --border-color: var(--ion-color-step-300, #151414);
+}

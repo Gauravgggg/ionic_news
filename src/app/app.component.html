@@ -1,3 +1,47 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+    <ion-menu side="start" contentId="main-content">
+        <!-- <ion-header>
+            <ion-toolbar color="dark">
+                <ion-title>
+                    News
+                </ion-title>
+            </ion-toolbar>
+        </ion-header> -->
+
+        <ion-content>
+            <ion-list>
+                <ion-menu-toggle>
+                    <ion-item lines="none" routerLink="/news/tabs/newslist">
+                        <ion-icon name="newspaper-outline" slot="start" style="width: 30px; height: 30px;"></ion-icon>
+                        Newslist
+                    </ion-item>
+                </ion-menu-toggle>
+                <ion-menu-toggle>
+                    <ion-item lines="none" routerLink="/bookmark">
+                        <ion-icon name="bookmark-outline" slot="start" style="width: 30px; height: 30px;"></ion-icon>
+                        Bookmark
+                    </ion-item>
+                </ion-menu-toggle>
+                <ion-menu-toggle>
+                    <ion-item lines="none" routerLink="/Profile">
+                        <ion-icon name="person-circle-outline" slot="start" style="width: 30px; height: 30px;"></ion-icon>
+                        Profile
+                    </ion-item>
+                </ion-menu-toggle>
+                <ion-menu-toggle>
+                    <ion-item lines="none" routerLink="/news/tabs/settings/new-sections">
+                        <ion-icon name="add-outline" slot="start" style="width: 30px; height: 30px;"></ion-icon>
+                        Add News
+                    </ion-item>
+                </ion-menu-toggle>
+                <ion-menu-toggle>
+                    <ion-item lines="none" (click)="onLogout()">
+                        <ion-icon name="log-out-outline" slot="start" style="width: 30px; height: 30px; padding: 4px;"></ion-icon>
+                        logout
+                    </ion-item>
+                </ion-menu-toggle>
+            </ion-list>
+        </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
 </ion-app>

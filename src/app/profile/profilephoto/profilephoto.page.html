@@ -1,0 +1,22 @@
+<ion-header [translucent]="true">
+    <ion-toolbar color="dark">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/Profile"></ion-back-button>
+        </ion-buttons>
+        <ion-title>profile photo</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="ion-text-center" *ngIf="!editimage">
+        <ion-spinner></ion-spinner>
+    </div>
+    <ion-grid>
+        <ion-row>
+            <ion-col *ngIf="editimage">
+                <img [src]="profileimage">
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+</ion-content>

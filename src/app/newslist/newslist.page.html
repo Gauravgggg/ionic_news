@@ -1,0 +1,96 @@
+<ion-header>
+    <ion-toolbar color="dark">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title style="padding: 3px;">Newslist</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid class="ion-no-padding">
+        <ion-col sizeMd="4" sizeLg="4" sizeSm="12">
+            <ion-list *ngIf="!isLoading; else skeletonList" style="padding: 0%;">
+                <ion-item-sliding *ngFor="let newslist of news;" #slideEl>
+                    <ion-item-group class="ion-no-margin">
+
+                        <ion-item lines="none" class="ion-no-margin" scroll="null" [routerLink]="['./', newslist.id]">
+                            <ion-thumbnail>
+                                <ion-img [src]="newslist.imageurl"></ion-img>
+                            </ion-thumbnail>
+                            <ion-content class="loaded-content">
+                                <ion-label class="loaded-type">{{newslist.newstype}}</ion-label>
+                                <ion-label class="load-title">{{newslist.title}}</ion-label>
+                            </ion-content>
+                        </ion-item>
+
+                        <ion-item lines="full" class="ion-no-margin">
+                            <ion-label class="ion-no-margin" style="margin-bottom: 6px;">
+                                <ion-list class="loaded-date ion-no-padding">{{newslist.date | date}}</ion-list>
+                            </ion-label>
+                            <ion-buttons class="ion-no-padding ion-no-margin" (click)="onClickBookmark(newslist)" fill="color">
+                                <ion-icon [name]="newslist.bookmark ? 'bookmark': 'bookmark-outline'" slot="end"></ion-icon>
+                            </ion-buttons>
+                            <ion-buttons class="ion-no-padding ion-no-margin" (click)="onSharenews()">
+                                <ion-icon name="share-social-outline" slot="end"></ion-icon>
+                            </ion-buttons>
+                        </ion-item>
+                    </ion-item-group>
+                    <ion-ripple-effect></ion-ripple-effect>
+
+                    <ion-item-options>
+                        <ion-item-option color="danger" (click)="onDelete(newslist.id,slideEl)" style="padding-bottom: 40px;">
+                            <ion-icon name="trash-outline" slot="icon-only"></ion-icon>
+                        </ion-item-option>
+                    </ion-item-options>
+                </ion-item-sliding>
+                <!--
+                <div class="ion-text-center">
+                    <ion-spinner color="primary" *ngIf="isLoading"></ion-spinner>
+                </div> -->
+
+
+            </ion-list>
+
+            <ng-template #skeletonList>
+                <ion-list>
+                    <ion-item-sliding *ngFor="let skeleton of skeletonListData;">
+                        <ion-item-group>
+
+                            <ion-item lines="none">
+                                <ion-thumbnail>
+                                    <ion-skeleton-text [animated]="true" style="width: 80px;"></ion-skeleton-text>
+                                </ion-thumbnail>
+                                <ion-content class="loaded-content">
+                                    <ion-label class="loaded-type">
+                                        <ion-skeleton-text [animated]="true" style="width: 40%;"></ion-skeleton-text>
+                                    </ion-label>
+                                    <ion-label class="load-title">
+                                        <ion-skeleton-text [animated]="true" style="width: 60%;"></ion-skeleton-text>
+                                    </ion-label>
+                                </ion-content>
+                            </ion-item>
+
+                            <ion-item lines="none" class="ion-no-margin">
+                                <ion-label class="ion-no-margin">
+                                    <ion-list class="loaded-date">
+                                        <ion-skeleton-text [animated]="true" style="width: 20%;"></ion-skeleton-text>
+                                    </ion-list>
+                                </ion-label>
+                                <ion-buttons>
+                                    <ion-skeleton-text [animated]="true" style="width: 5px;"></ion-skeleton-text>
+                                </ion-buttons>
+                                <ion-buttons>
+                                    <ion-skeleton-text [animated]="true" style="width: 5px;"></ion-skeleton-text>
+                                </ion-buttons>
+                            </ion-item>
+                        </ion-item-group>
+                    </ion-item-sliding>
+
+                </ion-list>
+            </ng-template>
+
+
+        </ion-col>
+    </ion-grid>
+</ion-content>

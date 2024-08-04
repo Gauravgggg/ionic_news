@@ -1,0 +1,69 @@
+<ion-header>
+    <ion-toolbar color="dark">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/news/tabs/settings"></ion-back-button>
+        </ion-buttons>
+        <ion-title>News</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="form">
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-list>
+                        <ion-item>
+                            <ion-label position="floating">News Type</ion-label>
+                            <ion-input name="newtype" formControlName="newstype" required></ion-input>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-label position="floating">Title</ion-label>
+                            <ion-input name="title" formControlName="title"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="floating">ImageUrl</ion-label>
+                            <ion-input name="imageurl" formControlName="imageurl"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label>News Date</ion-label>
+                            <!-- <ion-text slot="end">{{ dateValue }}</ion-text>
+                            <ion-popover trigger="open-date-input" show-backdrop="false">
+                                <ng-template>
+                                    <ion-datetime #popoverDatetime presentation="date" (ionChange)="dateValue = formatDate(popoverDatetime.value); popoverDatetime.confirm(true);"></ion-datetime>
+                                </ng-template>
+                            </ion-popover> -->
+                            <ion-datetime-button datetime="date"></ion-datetime-button>
+                            <ion-modal [keepContentsMounted]="true">
+                                <ng-template>
+                                    <ion-datetime [min]="mindate" max="2025-01-01" presentation="date" id="date" (ionChange)="dismiss()" formControlName="date"></ion-datetime>
+                                </ng-template>
+                            </ion-modal>
+                        </ion-item>
+                        <!-- <ion-item id="open-modal">
+                            <ion-label> News Date</ion-label>
+                            <ion-note slot="end" id="dateValue"></ion-note>
+                        </ion-item>
+                        <ion-modal trigger="open-modal">
+                            <ion-content>
+                                <ion-datetime id="date" presentation="date" min="2024-01-01" max="2025-01-01" formControlName="date"></ion-datetime>
+                            </ion-content>
+                        </ion-modal> -->
+
+                        <ion-item>
+                            <ion-label position="floating">Description</ion-label>
+                            <ion-textarea name="description" formControlName="description"></ion-textarea>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-button type="submit" (click)="onsubmit()">Submit</ion-button>
+                </ion-col>
+            </ion-row>
+
+        </ion-grid>
+    </form>
+</ion-content>

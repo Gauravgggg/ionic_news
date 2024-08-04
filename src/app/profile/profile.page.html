@@ -1,0 +1,96 @@
+<ion-header>
+    <ion-toolbar color="dark">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/news/tabs/newslist"></ion-back-button>
+        </ion-buttons>
+        <ion-title class="ion-no-padding">Profile</ion-title>
+        <ion-button slot="end" (click)="oncamerasheet()">
+            <ion-icon name="camera"></ion-icon>
+        </ion-button>
+    </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+    <div class="ion-text-center" *ngIf="!isloading">
+        <ion-spinner></ion-spinner>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onupdate()">
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-list>
+                        <br>
+                        <ion-avatar style="display: block; margin: auto;" routerLink="/Profile/profilephoto">
+                            <img alt="Silhouette of a person's head" *ngIf="!imageshow" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+                            <img alt="Silhouette of a person's head" *ngIf="imageshow" [src]="selectimage" alt="" formControlName="image">
+                            <!-- <  img alt="Silhouette of a person's head" [src]="imageshow ?'https://ionicframework.com/docs/img/demos/avatar.svg' : selectimage" formControlName="image" /> -->
+                        </ion-avatar>
+                        <br>
+
+                        <ion-item>
+                            <ion-label position="floating">First Name <span>*</span></ion-label>
+                            <ion-input type="text" name="firstname" id="firstname" formControlName="firstname" class="form-control form-control-sm"></ion-input>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-label position="floating">Last Name<span>*</span></ion-label>
+                            <ion-input type="text" name="lastname" formControlName="lastname"></ion-input>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-label position="floating">Email<span>*</span></ion-label>
+                            <ion-input type="email" name="email" formControlName="email"></ion-input>
+                        </ion-item>
+
+
+                        <ion-item>
+                            <ion-label>Date of Birth<span>*</span></ion-label>
+
+                            <!-- <ion-input type="date" name="date" formControlName="date"></ion-input> -->
+                            <ion-datetime-button datetime="date"></ion-datetime-button>
+                            <ion-modal [keepContentsMounted]="true">
+                                <ng-template>
+                                    <ion-datetime presentation="date" name="date" id="date" formControlName="date" (ionChange)="dismiss()"></ion-datetime>
+                                </ng-template>
+                            </ion-modal>
+                        </ion-item>
+                        <br>
+                        <ion-button type="submit" color="primary" expand="block">Update</ion-button>
+
+                    </ion-list>
+
+                    <!-- <ion-list *ngIf="!isloading">
+                        <br>
+                        <ion-avatar style="display: block; margin: auto;">
+                            <ion-skeleton-text [animated]="true" style="width: 10px;"></ion-skeleton-text>
+                        </ion-avatar>
+                        <br>
+
+                        <ion-item>
+                            <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+                        </ion-item>
+                        <br>
+                        <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+
+                    </ion-list> -->
+
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </form>
+
+</ion-content>

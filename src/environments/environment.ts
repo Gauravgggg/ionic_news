@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseAPIkey:'AIzaSyC4BaZYSGFZ9sDQq_ePVgxafBN2aZhxNh4',
+  url: 'https://ion-news-task-default-rtdb.firebaseio.com/'
 };
 
 /*

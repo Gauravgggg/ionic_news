@@ -1,0 +1,44 @@
+ion-avatar {
+    --border-radius: 5px;
+}
+
+ion-thumbnail {
+    --size: 80px;
+    width: var(--size);
+    height: var(--size);
+    margin-right: 14px;
+    margin-top: 20px;
+}
+
+ion-item {
+    overflow: hidden;
+}
+
+.loaded-content {
+    overflow-y: hidden;
+}
+
+.loaded-type {
+    margin-top: 20px;
+    margin-left: 4px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: small;
+}
+
+.load-title {
+    margin-left: 4px;
+    font-family: "Roboto Flex", "Roboto", "Helvetica ", "Arial", sans-serif;
+    // font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: sans-serif;
+    font-weight: 200;
+}
+
+.loaded-date {
+    font-size: small;
+    margin-top: 0%;
+    padding: 0%;
+}
+
+ion-buttons {
+    display: inline-block;
+}

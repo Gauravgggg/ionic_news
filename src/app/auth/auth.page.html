@@ -1,0 +1,220 @@
+<!-- <ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>{{isLogin ? 'Login' : 'Singup'}}</ion-title>
+    </ion-toolbar>
+</ion-header> -->
+
+<ion-content>
+    <form #tform="ngForm" (ngSubmit)="onSubmit(tform)">
+        <ion-grid>
+
+            <ion-row *ngIf="isLogin">
+                <ion-col style="background-color: transparent;">
+                    <ion-list style="margin-top: 265px; padding: 5px; background-color: transparent; ">
+                        <!-- <ion-label position="floating">Email</ion-label> -->
+                        <ion-input type="email" name="email" fill="outline" label="Email" label-placement="floating" ngModel required email maxlength="50" #emailCtrl="ngModel"></ion-input>
+
+                        <ion-item *ngIf="!emailCtrl.valid && emailCtrl.touched" lines="none" color="none">
+                            <ion-label color="danger">Should be valid email address.</ion-label>
+                        </ion-item>
+                        <br>
+
+                        <!-- <ion-label position="floating">Password</ion-label> -->
+                        <ion-input type="{{isshowpasswordlogin? 'text' : 'password'}}" label="Password" label-placement="floating" name="password" fill="outline" ngModel required maxlength="50" minlength="5" #passwordCtrl="ngModel">
+                            <ion-icon name="{{ isshowpasswordlogin ? 'eye' : 'eye-off' }}" slot="end" (click)=" onshowpasswordlogin()"></ion-icon>
+                        </ion-input>
+
+
+                        <ion-item *ngIf="!passwordCtrl.valid && passwordCtrl.touched" lines="none" color="none">
+                            <ion-label color="danger">Must be between 5 and 50 characters.</ion-label>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+
+            <ion-row *ngIf="!isLogin" class="ion-padding">
+                <ion-col style="background-color: transparent;">
+                    <ion-list style="background-color: transparent;">
+                        <!-- <ion-item-group> -->
+                        <ion-item lines="none" color="none" class=" ion-no-margin ion-no-padding" style="background-color: transparent;">
+                            <ion-select [ngModel]="'Mr.'" fill="outline" justify="start" name="title" ngModel required style="flex: 1; width: 105px; padding: 4px; border-color: black; margin-top:5px;">
+                                <!-- <ion-select-option value="Select"></ion-select-option> -->
+                                <ion-select-option value="Mr." class="custom-select-option">Mr.</ion-select-option>
+                                <ion-select-option value="Mrs." class="custom-select-option">Mrs.</ion-select-option>
+                                <ion-select-option value="Dr." class="custom-select-option">Dr.</ion-select-option>
+                            </ion-select>
+                            <!-- </ion-item>
+                            <ion-item> -->
+                            <!-- <ion-label position="floating">Title</ion-label> -->
+                            <!-- <ion-label position="floating">First Name<span>*</span></ion-label> -->
+                            <ion-input type="text" fill="outline" name="firstname" ngModel required minlength="3" maxlength="50" labelPlacement="floating" label="First name" #firstnameCtrl="ngModel" style="margin-top: 5px; margin-left: 10px; padding-left: 5px;"></ion-input>
+                        </ion-item>
+                        <!-- </ion-item-group> -->
+                        <ion-item *ngIf="!firstnameCtrl.valid && firstnameCtrl.touched" lines="none" color="none">
+                            <ion-label color="danger">Must be between 3 and 50 characters.</ion-label>
+                        </ion-item>
+
+                        <ion-item class="ion-no-padding ion-no-margin" color="none" lines="none">
+                            <!-- <ion-label position="floating">Last Name<span>*</span></ion-label> -->
+                            <ion-input type="text" name="lastname" fill="outline" ngModel minlength="3" maxlength="50" labelPlacement="floating" class="itempadd" label="Last Name" required #lastnameCtrl="ngModel"></ion-input>
+                        </ion-item>
+                        <ion-item *ngIf="!lastnameCtrl.valid && lastnameCtrl.touched" lines="none" color="none">
+                            <ion-label color="danger">Must be between 3 and 50 characters.</ion-label>
+                        </ion-item>
+                        <ion-item lines="none" class="ion-no-padding" color="none">
+                            <!-- <ion-label position="floating">Email<span>*</span></ion-label> -->
+                            <ion-input type="email" name="email" fill="outline" label="Email" labelPlacement="floating" ngModel requeired class="itempadd" email maxlength="50" #emailCtrl="ngModel"></ion-input>
+                        </ion-item>
+                        <ion-item *ngIf="!emailCtrl.valid && emailCtrl.touched" lines="none" color="none">
+                            <ion-label color="danger">Should be valid email address.</ion-label>
+                        </ion-item>
+                        <ion-item lines="none" color="none" class="ion-no-padding">
+                            <ion-label>Date of Birth<span>*</span></ion-label>
+                            <!-- <ion-input type="date" name="date" fill="outline" label="Date of Birth" labelPlacement="floating" class="itempadd" ngModel required></ion-input> -->
+
+                            <ion-datetime-button datetime="date"></ion-datetime-button>
+                            <ion-modal [keepContentsMounted]="true">
+                                <ng-template>
+                                    <ion-datetime name="date" [min]="" max="2025-01-01" presentation="date" id="date" [(ngModel)]="selecteddate" (ionChange)="dismiss()"></ion-datetime>
+                                </ng-template>
+                            </ion-modal>
+
+                        </ion-item>
+                        <!-- <ion-item lines="none">
+                            <ion-label> Gender</ion-label>
+                        </ion-item> -->
+                        <ion-item lines="none" class="ion-no-margin ion-no-padding" style="border: 0px 0px 0px 0px; padding: 0px 0px 0px 9px;" color="none">
+                            Gender:
+                        </ion-item>
+                        <ion-item lines="none" color="none" style="padding: 0px 0px 0px 50px;">
+                            <ion-radio-group slot="start" [(ngModel)]="selectedgender" name="gender" *ngFor="let genders of gender">
+                                <!-- <ion-item lines="none" > -->
+                                <ion-radio [value]="genders.id">
+                                    <ion-label> {{genders.value}}</ion-label>
+                                </ion-radio>
+                                <!--
+                                </ion-item> -->
+                            </ion-radio-group>
+                        </ion-item>
+
+                        <!-- <ion-item>
+                <ion-label position="floating">Gender</ion-label>
+                <ion-radio-group>
+                  <ion-radio value="male" labelPlacement="end">Male</ion-radio>
+                  <br />
+                  <ion-radio value="female" labelPlacement="end"
+                    >Female</ion-radio
+                  >
+                </ion-radio-group>
+              </ion-item> -->
+
+                        <ion-item lines="none" color="none" class="ion-no-padding">
+                            <!-- <ion-label position="floating">Password<span>*</span></ion-label> -->
+                            <ion-input type="{{ showPassword ? 'text' : 'password' }}" name="password" fill="outline" label="password" labelPlacement="floating" style="margin-top: 10px; padding: 5px;" id="password" ngModel #registerpasswordCtrl="ngModel" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{5,50}$">
+                                <ion-icon name="{{ showPassword ? 'eye' : 'eye-off' }}" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
+                            </ion-input>
+
+                        </ion-item>
+                        <ion-item *ngIf="!registerpasswordCtrl.valid && registerpasswordCtrl.touched && registerpasswordCtrl.getError('pattern')" color="none" lines="none">
+                            <ion-label color="danger">Password must be between 5 and 50 characters, At least one lowercase and uppercase alphabet, at least one number, at least one special character.
+                            </ion-label>
+                        </ion-item>
+                        <ion-item lines="none" *ngIf="!registerpasswordCtrl.valid && registerpasswordCtrl.touched && registerpasswordCtrl.getError('required')" color="none">
+                            <ion-label color="danger">Password is required.</ion-label>
+                        </ion-item>
+                        <ion-item lines="none" color="none" class="ion-no-padding">
+                            <!-- <ion-label position="floating">Retype Password<span>*</span></ion-label> -->
+                            <ion-input type="{{ confirmShowPassword ? 'text' : 'password' }}" name="retype-password" fill="outline" class="itempadd" label="Retype Password" labelPlacement="floating" ngModel required #confirmpassword="ngModel">
+                                <ion-icon name="{{ confirmShowPassword ? 'eye' : 'eye-off' }}" slot="end" (click)="toggleConfirmShow()"></ion-icon>
+                            </ion-input>
+                        </ion-item>
+                        <ion-item *ngIf="!confirmpassword.valid && checkPasswords(tform)  && confirmpassword.touched" color="none">
+                            <ion-label color="danger">Passwords do not match.</ion-label>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col size-md="6" offset-md="3">
+                    <ion-button type="submit" color="primary" expand="block">{{isLogin? 'Login' : 'Singup'}}</ion-button>
+                    <ion-button type="button" color="primary" fill="clear" expand="block" (click)="onSwitchMode()">
+                        <ion-text class="button-text">{{isLogin? 'Dont have account?' : 'Already have a acount?'}}</ion-text>
+                        <ion-text class="button-text singup ion-no-padding">{{isLogin? 'Signup' : 'Login'}}</ion-text>
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+
+        </ion-grid>
+    </form>
+</ion-content>
+
+
+
+
+<!-- <ion-content>
+    <ion-grid>
+        <form #f="ngForm" (ngsubmit)="Onsubmit(f)">
+            <ion-row *ngIf="authType === 'login'">
+                <ion-col size-md="6" offset-md="3">
+                    <ion-list>
+                        <ion-item>
+                            <ion-input label="Email" name="email" labelPlacement="floating" type="email" required email ngModel #emailctrl="ngModel"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-input label="password" id="password_login" name="password" labelPlacement="floating" type="{{ isshowpasswordlogin ? 'text' :'password'}}" required #passwordctrl="ngModel" ngModel></ion-input>
+                            <ion-buttons (click)="onshowpasswordlogin()">
+                                <ion-icon [name]="isshowpasswordlogin ? 'eye-outline' : 'eye-off-outline'"></ion-icon>
+                            </ion-buttons>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+ -->
+<!-- <ion-row *ngIf="authType === 'signup'">
+                <ion-col>
+                    <ion-list>
+                        <ion-item>
+                            <ion-input name="firstname" type="text" label="Firstname" labelPlacement="floating" required #firstnamectrl="ngModel" ngModel required></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-input name="lastname" type="text" label="Lastname" labelPlacement="floating" #lastnamectrl="ngModel" ngModel required></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-input label="Email" name="email" labelPlacement="floating" type="email" required #emailsingup="ngModel" ngModel required email></ion-input>
+                        </ion-item>
+                        <ion-item>
+                          <ion-input type="date" name="date" labelPlacement="floating" label="Date of Birth" ngModel #datectrl="ngModel"></ion-input>
+                        </ion-item>
+                        <ion-item>
+ -->
+<!-- <ion-label *ngFor="let genders of gender"> -->
+<!-- <ion-radio [value]="genders" formControlName="Gender">{{genders.value}}</ion-radio> -->
+<!-- <ion-radio slot="start" [value]="genders" name="genders" ngmodel #genderctrl="ngModel" ngModel required>{{genders.value}}</ion-radio>
+                            </ion-label>
+                        </ion-item>
+                        <ion-item>
+                            <ion-input label="password" id="password_signup" name="passwordsingup" labelPlacement="floating" type="{{ isshowpassword ? 'text' :'password'}}" required ngModel #passwordsingup="ngModel"></ion-input>
+                            <ion-buttons (click)="onshowpassword()">
+                                <ion-icon [name]="isshowpassword ? 'eye-outline' : 'eye-off-outline'"></ion-icon>
+                            </ion-buttons>
+                        </ion-item>
+                        <ion-item>
+                            <ion-input label="Repassword" name="repassword" labelPlacement="floating" type="{{ isreshowpassword ? 'text' :'password'}}" required ngModel #repasswordsingup="ngModel"></ion-input>
+                            <ion-buttons (click)="Onreshowpassword()">
+                                <ion-icon [name]="isreshowpassword ? 'eye-outline' : 'eye-off-outline'"></ion-icon>
+                            </ion-buttons>
+                        </ion-item>
+
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <ion-button color="primary" type="ion-button" fill="clear" expand="block" (click)="SwitchAuthType()"> {{ authType === 'login' ? 'Switch to Signup' : 'Switch to Login' }}</ion-button>
+                    <ion-button color="primary" type="submit" expand="block">{{authType === 'login'? 'Login': 'Singup'}}</ion-button>
+                </ion-col>
+            </ion-row>
+        </form>
+    </ion-grid>
+</ion-content> -->
